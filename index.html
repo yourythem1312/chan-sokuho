@@ -12,12 +12,13 @@
         
         #start-btn { padding: 20px 40px; font-size: 1.5rem; background: red; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
         
-        #alert-content { display: none; text-align: center; color: white; background: rgba(0,0,0,0.6); padding: 30px; border: 2px solid red; border-radius: 15px; }
+        #alert-content { display: none; text-align: center; color: white; background: rgba(0,0,0,0.6); padding: 30px; border: 2px solid red; border-radius: 15px; margin: 20px; }
         h1 { font-size: 2.5rem; margin-top: 0; color: #ff0000; }
-        #message { font-size: 1.2rem; line-height: 1.6; margin-bottom: 20px; }
+        #message { font-size: 1.2rem; line-height: 1.6; }
         
-        .btn-group { display: flex; flex-direction: column; gap: 10px; }
-        button { padding: 10px 20px; font-size: 1rem; cursor: pointer; border-radius: 5px; border: none; }
+        /* 画面下の横並びボタンエリア */
+        #control-panel { display: none; position: fixed; bottom: 30px; left: 0; width: 100%; justify-content: center; gap: 10px; }
+        button { padding: 15px; font-size: 1rem; cursor: pointer; border-radius: 5px; border: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -31,28 +32,30 @@
     <div id="alert-content">
         <h1>緊急石井速報</h1>
         <p id="message"></p>
-        <div class="btn-group">
-            <button onclick="startEmergency()">別の速報を見る</button>
-            <button onclick="stopEmergency()" style="background: #555; color: white;">最初の画面に戻る</button>
-        </div>
+    </div>
+
+    <div id="control-panel">
+        <button onclick="startEmergency()">別の速報を見る</button>
+        <button onclick="stopEmergency()" style="background: #555; color: white;">最初の画面に戻る</button>
     </div>
 
     <script>
         const messages = [
-            "【不快注意】石井が何か食べようとしています。食べ方が汚いので、視界に入れないようにしてください。",
-            "【不快注意】石井が何か食べています。くちゃくちゃという音に注意してください。",
-            "【警告】石井はあなたの話を聞く気がありません。速やかに話すことをやめましょう。",
-            "【警告】石井がつまらない話を始めました。聞き流す準備を始めてください。",
-            "【爆速不要】質問の答えが返ってきません。質問するだけ無駄です。あきらめましょう。",
-            "【要注意】石井は普通に面倒くさいので、なるべく関わらないようにしてください。",
-            "【早期避難】石井に対して都合が悪い質問をしたようです。二次災害につながるので速やかに避難しましょう。",
-            "【爆音警報】石井が話し始めました。突然の声量による不快指数上昇に注意してください。 "
+            "【不快注意】石井が何かを伝えようとしています。食欲が落ちるので、視界に入れないようにしてください。",
+            "【不快注意】石井が何かを喋っています。くちゃくちゃという音に注意してください。",
+            "【警告】石井はあなたの話を聞く気がありません。話すことを速やかにやめましょう。",
+            "【警告】石井がとまらない話を始めました。耳を塞いで退散してください。",
+            "【爆速不要】緊急速報が迫ってきません。放置するのが正解です。あきらめましょう。",
+            "【要注意】石井を放置し無視してください。なるべく関わらないようにしてください。",
+            "【早期避難】石井が近づいて来ます。被害につながる前に速やかに避難しましょう。",
+            "【緊急速報】石井が接近しました。奇声や怒声による不快指数に注意してください。"
         ];
 
         function startEmergency() {
             document.getElementById('start-btn').style.display = 'none';
             document.getElementById('bg-video').style.display = 'block';
             document.getElementById('alert-content').style.display = 'block';
+            document.getElementById('control-panel').style.display = 'flex';
             
             document.getElementById('bg-video').play();
             document.getElementById('message').innerText = messages[Math.floor(Math.random() * messages.length)];
@@ -62,6 +65,7 @@
             document.getElementById('start-btn').style.display = 'block';
             document.getElementById('bg-video').style.display = 'none';
             document.getElementById('alert-content').style.display = 'none';
+            document.getElementById('control-panel').style.display = 'none';
             document.getElementById('bg-video').pause();
             document.getElementById('bg-video').currentTime = 0;
         }
