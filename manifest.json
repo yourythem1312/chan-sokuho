@@ -1,0 +1,15 @@
+{
+  "name": "緊急石井速報",
+  "short_name": "石井速報",
+  "icons": [
+    {
+      "src": "icon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ff0000"
+}
