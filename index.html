@@ -39,19 +39,17 @@
         <button onclick="stopEmergency()" style="background: #555; color: white;">最初の画面に戻る</button>
     </div>
 
-    <script>
-        function startEmergency() {
-            // メッセージリスト
-            const messages = [
-                "【不快警報】石井が何か食べようとしています。食べ方が汚いので、視界に入れないようにしてください。",
-                "【不快警報】石井が何か食べています。くちゃくちゃという音に注意してください。",
-                "【警告】石井はあなたの話を聞く気がありません。話すことを速やかにやめましょう。",
-                "【警告】石井がつまらない話を始めました。聞き流す準備を始めてください。",
-                "【意味不明】質問の答えが返ってきません。質問するだけ無駄です。あきらめましょう。",
-                "【不快警報】石井は普通に面倒くさいので、なるべく関わらないようにしてください。",
-                "【災害警報】石井に対して都合が悪い質問をしたようです。二次災害につながるので速やかに避難しましょう。",
-                "【爆音警報】石井が話し始めました。突然の声量による不快指数上昇に注意してください。"
-            ];
+   <script>
+        const messages = [
+            "【不快警報】石井が何か食べようとしています。食べ方が汚いので、視界に入れないようにしてください。",
+            "【不快警報】石井が何か食べています。くちゃくちゃという音に注意してください。",
+            "【警告】石井はあなたの話を聞く気がありません。話すことを速やかにやめましょう。",
+            "【警告】石井がつまらない話を始めました。聞き流す準備を始めてください。",
+            "【意味不明】質問の答えが返ってきません。質問するだけ無駄です。あきらめましょう。",
+            "【不快警報】石井は普通に面倒くさいので、なるべく関わらないようにしてください。",
+            "【災害警報】石井に対して都合が悪い質問をしたようです。二次災害につながるので速やかに避難しましょう。",
+            "【爆音警報】石井が話し始めました。突然の声量による不快指数上昇に注意してください。"
+        ];
 
         function startEmergency() {
             document.getElementById('start-btn').style.display = 'none';
@@ -59,7 +57,8 @@
             document.getElementById('alert-content').style.display = 'block';
             document.getElementById('control-panel').style.display = 'flex';
             
-            document.getElementById('bg-video').play();
+            const video = document.getElementById('bg-video');
+            video.play();
             document.getElementById('message').innerText = messages[Math.floor(Math.random() * messages.length)];
         }
 
@@ -68,8 +67,10 @@
             document.getElementById('bg-video').style.display = 'none';
             document.getElementById('alert-content').style.display = 'none';
             document.getElementById('control-panel').style.display = 'none';
-            document.getElementById('bg-video').pause();
-            document.getElementById('bg-video').currentTime = 0;
+            
+            const video = document.getElementById('bg-video');
+            video.pause();
+            video.currentTime = 0;
         }
     </script>
 </body>
